@@ -1,0 +1,21 @@
+<div id="<%= dom_id comment %>">
+
+  <p>
+    <strong>Commenter:</strong>
+    <%= (User.find(comment.user_id)).email %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.comment %>
+  </p>
+
+
+  <p>
+  <%= link_to "Destroy Comment", [comment.post, comment], data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              } %>
+  </p>
+
+</div>

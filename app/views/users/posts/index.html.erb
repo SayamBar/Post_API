@@ -1,0 +1,27 @@
+<p style="color: green"><%= notice %></p>
+
+<style>
+  div{
+    text-align:center;
+  }
+</style>
+
+<div>
+  <h1>Posts</h1>
+</div>
+
+<div id="posts">
+  <% @posts.each do |post| %>
+    
+    <%= render post %>
+    <p><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+    
+    <p>
+      <%= link_to "Show this post", post %>
+    </p>
+  <% end %>
+
+
+<%= link_to "New post", new_post_path %>
+<%= paginate @posts %>
+</div>

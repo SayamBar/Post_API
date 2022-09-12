@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+
+  <div class="jumbotron" style="color: brown">
+    <h1>Posts</h1>
+  </div>
+
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    table.center{
+      margin-left: auto; 
+      margin-right: auto;
+    }
+    div{
+      text-align:center; 
+    }
+    .bg{
+      background-color: #1abc9c; /* Green */
+      color: #ffffff;
+    }
+  </style>
+
+  <body>
+    <table class="center">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Body</th>
+          <th>No. of likes</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @posts.each do |post| %>
+          <tr>
+            <td><%= link_to post.title, post %></td>
+            <td><%= link_to post.body, post %></td>
+            <td><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div><%= paginate @posts %></div>
+  </body>
+</html>
