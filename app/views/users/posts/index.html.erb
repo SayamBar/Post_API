@@ -23,5 +23,20 @@
 
 
 <%= link_to "New post", new_post_path %>
-<%= paginate @posts %>
+<div>
+  <ul class="pager">
+     <li class="previous <%= @page == 1 ? 'disabled' : '' %>">
+       <div class="center">
+         <%= link_to_if @page > 1, "<< Previous", posts_path(page: @page - 1) %>
+       </div>
+     </li>
+
+     <li class="next <%= @page == (Post.count % @per == 0 ? Post.count / @per : (Post.count / @per) + 1) ? 'disabled' : '' %>">
+         <div class="center">
+           <%= link_to_if @page < (Post.count % @per == 0 ? Post.count / @per : (Post.count / @per) + 1), "Next >>", posts_path(page: @page + 1) %>
+         </div>
+     </li>
+  </ul>
+
+
 </div>

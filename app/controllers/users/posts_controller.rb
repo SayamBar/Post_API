@@ -5,7 +5,10 @@ module Users
   
     # GET /posts or /posts.json
     def index
-      @posts = current_user.posts.page(params[:page] || 1).per(params[:per]  || 1)
+      # @posts = current_user.posts.page(params[:page] || 1).per(params[:per]  || 1)
+      @page = (params[:page] || 1).to_i
+      @per = (params[:per] || 1).to_i
+      @posts = Post.offset(@per * (@page - 1)).limit(@per)
     end
   
     # GET /posts/1 or /posts/1.json
